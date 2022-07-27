@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+    <Description>Synchronize/Replicate database changes using SQL Server Change Tracking</Description>
+    <Copyright>Copyright 2013-$([System.DateTime]::Now.Year) Michael Ganss</Copyright>
+    <AssemblyTitle>SyncChanges.Service</AssemblyTitle>
+    <AppVeyor_Build_Version Condition="'$(APPVEYOR_BUILD_VERSION)' == ''">1.0.0</AppVeyor_Build_Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>$(AppVeyor_Build_Version).0</FileVersion>
+    <PackageVersion>$(AppVeyor_Build_Version)</PackageVersion>
+    <Authors>Michael Ganss</Authors>
+    <AssemblyName>SyncChanges.Service</AssemblyName>
+    <PackageId>SyncChanges.Service</PackageId>
+    <PackageTags>replication synchronization sqlserver sql-server mirroring database</PackageTags>
+    <PackageProjectUrl>https://github.com/mganss/SyncChanges</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/mganss/SyncChanges/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>git://github.com/mganss/SyncChanges</RepositoryUrl>
+    <RootNamespace>SyncChanges.Service</RootNamespace>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Remove.bat" />
+    <None Remove="Setup.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Remove.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Setup.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NLog" Version="5.0.1" />
+    <PackageReference Include="NLog.Schema" Version="5.0.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SyncChanges\SyncChanges.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.ServiceProcess" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="config.example.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

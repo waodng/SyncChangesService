@@ -1,0 +1,18 @@
+{
+  "ReplicationSets": [
+    {
+      "Name": "Test",
+      "Source": {
+        "Name": "Primary",
+        "ConnectionString": "Data Source=192.168.3.111\\SQL_WQ;Initial Catalog=CSSDMS_Ultimate;uid=sa;pwd=Wqkj123;MultipleActiveResultSets=True"
+      },
+      "Destinations": [
+        {
+          "Name": "Node1",
+          "ConnectionString": "Data Source=192.168.3.222;Initial Catalog=CSSDMS_CS;uid=sa;pwd=Wqkj123;MultipleActiveResultSets=True"
+        }
+      ],
+      "Tables": [ "CSSD_PATIENT_V", "MACHINE_CJ_LOG_TBL" ]
+    }
+  ]
+}
